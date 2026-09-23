@@ -1,0 +1,43 @@
+@model GiftOfTheGiversPrototype.Controllers.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="auth-section">
+    <div class="auth-card">
+        <div class="hero-logo small">G</div>
+        <h1>Welcome Back</h1>
+        <p>Log in to your Gift of the Givers prototype account.</p>
+
+        <form asp-action="Login" method="post">
+            <input asp-for="ReturnUrl" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" placeholder="name@example.com" />
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" placeholder="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <label class="checkbox">
+                <input asp-for="RememberMe" /> Remember me
+            </label>
+
+            <button class="btn btn-primary full-width" type="submit">Log In</button>
+        </form>
+
+        <p class="auth-footer">Don't have an account? <a asp-action="Register">Register as a donor</a></p>
+
+        <div class="demo-box">
+            <strong>Demo Employee</strong><br />
+            employee@giftgivers.local<br />
+            Employee123
+        </div>
+    </div>
+</section>

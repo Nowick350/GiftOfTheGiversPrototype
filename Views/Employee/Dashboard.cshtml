@@ -1,0 +1,71 @@
+@model IEnumerable<ReliefProject>
+@using GiftOfTheGiversPrototype.Models
+@{
+    ViewData["Title"] = "Employee Dashboard";
+    var volunteers = ViewBag.Volunteers as List<Volunteer> ?? new List<Volunteer>();
+    var donations = ViewBag.Donations as List<Donation> ?? new List<Donation>();
+}
+
+<section class="page-banner">
+    <div class="container">
+        <span class="eyebrow">EMPLOYEE AREA</span>
+        <h1>Relief Management Dashboard</h1>
+        <p>Update ongoing projects and view volunteer sign-ups.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="stat-card"><strong>@Model.Count()</strong><span>Relief projects</span></div>
+            <div class="stat-card"><strong>@volunteers.Count</strong><span>Volunteer sign-ups</span></div>
+            <div class="stat-card"><strong>@donations.Count</strong><span>Recent donations</span></div>
+        </div>
+
+        <div class="card table-card">
+            <div class="section-heading">
+                <h2>Relief Projects</h2>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Project</th><th>Location</th><th>Status</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var project in Model)
+                    {
+                        <tr>
+                            <td>@project.Name</td>
+                            <td>@project.Location</td>
+                            <td><span class="status">@project.Status</span></td>
+                            <td><a class="small-link" asp-action="EditProject" asp-route-id="@project.Id">Update</a></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card table-card">
+            <h2>Volunteer Sign-Ups</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Skills</th><th>Availability</th></tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var volunteer in volunteers)
+                    {
+                        <tr>
+                            <td>@volunteer.FullName</td>
+                            <td>@volunteer.Email</td>
+                            <td>@volunteer.Skills</td>
+                            <td>@volunteer.Availability</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

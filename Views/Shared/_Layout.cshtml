@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gift of the Givers Prototype</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a class="brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark">G</span>
+                <span>Gift of the Givers</span>
+            </a>
+
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+            <div id="navLinks" class="nav-links">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="About">About</a>
+                <a asp-controller="Donation" asp-action="Donate">Donate</a>
+                <a asp-controller="Volunteer" asp-action="Register">Volunteer</a>
+
+                @if (User.IsInRole("Employee"))
+                {
+                    <a asp-controller="Employee" asp-action="Dashboard">Employee Dashboard</a>
+                }
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <span class="welcome">Hi, @User.Identity.Name?.Split('@')[0]</span>
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="inline-form">
+                        <button class="nav-button" type="submit">Logout</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="nav-cta" asp-controller="Account" asp-action="Register">Register</a>
+                }
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    @RenderBody()
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div>
+            <strong>Gift of the Givers — Prototype</strong>
+            <p>Part 1 academic prototype. Payment processing is simulated.</p>
+        </div>
+        <div>© 2026 Student Prototype</div>
+    </div>
+</footer>
+
+<script src="~/js/site.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

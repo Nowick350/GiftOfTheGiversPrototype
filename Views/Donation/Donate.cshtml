@@ -1,0 +1,70 @@
+@model DonateViewModel
+@{
+    ViewData["Title"] = "Donate";
+}
+
+<section class="page-banner">
+    <div class="container">
+        <span class="eyebrow">MAKE A DIFFERENCE</span>
+        <h1>Make a Donation</h1>
+        <p>Choose your amount, currency and donation frequency.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container form-container">
+        <form asp-action="Donate" method="post" class="form-card">
+            <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="DonorName"></label>
+                    <input asp-for="DonorName" placeholder="Your name or Anonymous" />
+                    <span asp-validation-for="DonorName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Amount"></label>
+                    <input asp-for="Amount" type="number" min="1" step="0.01" placeholder="500.00" />
+                    <span asp-validation-for="Amount"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Currency"></label>
+                    <select asp-for="Currency">
+                        <option>ZAR</option>
+                        <option>USD</option>
+                        <option>EUR</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Frequency"></label>
+                    <select asp-for="Frequency">
+                        <option>One-Time</option>
+                        <option>Monthly</option>
+                        <option>Weekly</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PaymentMethod"></label>
+                <select asp-for="PaymentMethod">
+                    <option>Mock Card</option>
+                    <option>Mock EFT</option>
+                    <option>Mock Digital Wallet</option>
+                </select>
+                <small>This is a demonstration only. No real payment is processed.</small>
+            </div>
+
+            <button class="btn btn-primary full-width" type="submit">Continue Donation</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

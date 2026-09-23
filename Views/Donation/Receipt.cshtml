@@ -1,0 +1,35 @@
+@model Donation
+@{
+    ViewData["Title"] = "Donation Receipt";
+}
+
+<section class="section">
+    <div class="container receipt-wrap">
+        <div class="receipt">
+            <div class="receipt-top">
+                <div class="hero-logo small">G</div>
+                <div>
+                    <h1>Donation Receipt</h1>
+                    <p>Gift of the Givers Prototype</p>
+                </div>
+            </div>
+
+            <div class="receipt-number">
+                Receipt: <strong>@Model.ReceiptNumber</strong>
+            </div>
+
+            <div class="receipt-details">
+                <div><span>Donor</span><strong>@Model.DonorName</strong></div>
+                <div><span>Amount</span><strong>@Model.Currency @Model.Amount.ToString("N2")</strong></div>
+                <div><span>Frequency</span><strong>@Model.Frequency</strong></div>
+                <div><span>Payment</span><strong>@Model.PaymentMethod</strong></div>
+                <div><span>Date</span><strong>@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")</strong></div>
+            </div>
+
+            <div class="success-box">✓ Donation recorded successfully in the prototype.</div>
+
+            <button class="btn btn-primary" onclick="window.print()">Print Receipt</button>
+            <a class="btn btn-light" asp-controller="Home" asp-action="Index">Back Home</a>
+        </div>
+    </div>
+</section>

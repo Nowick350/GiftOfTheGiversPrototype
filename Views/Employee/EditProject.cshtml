@@ -1,0 +1,47 @@
+@model ProjectViewModel
+@{
+    ViewData["Title"] = "Update Relief Project";
+}
+
+<section class="section">
+    <div class="container form-container">
+        <form asp-action="EditProject" method="post" class="form-card">
+            <input asp-for="Id" type="hidden" />
+            <h1>Update Relief Project</h1>
+            <p class="muted">Employee access: update project progress and information.</p>
+
+            <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location"></label>
+                <input asp-for="Location" />
+                <span asp-validation-for="Location"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status"></label>
+                <select asp-for="Status">
+                    <option>Planning</option>
+                    <option>Ongoing</option>
+                    <option>Completed</option>
+                    <option>Paused</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="5"></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <a class="btn btn-light" asp-action="Dashboard">Cancel</a>
+        </form>
+    </div>
+</section>

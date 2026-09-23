@@ -1,0 +1,44 @@
+@model GiftOfTheGiversPrototype.Controllers.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="auth-section">
+    <div class="auth-card">
+        <div class="hero-logo small">G</div>
+        <h1>Create Donor Account</h1>
+        <p>Register to support relief projects as a donor.</p>
+
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+            <div class="form-group">
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" />
+                <span asp-validation-for="FullName"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+
+            <button class="btn btn-primary full-width" type="submit">Create Account</button>
+        </form>
+
+        <p class="auth-footer">Already registered? <a asp-action="Login">Log in</a></p>
+    </div>
+</section>

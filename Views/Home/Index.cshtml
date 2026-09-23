@@ -1,0 +1,56 @@
+@model IEnumerable<ReliefProject>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="eyebrow">HUMANITARIAN RELIEF • PROTOTYPE</span>
+            <h1>Helping communities when they need it most.</h1>
+            <p>Support humanitarian relief projects, volunteer your skills and contribute to emergency response initiatives.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" asp-controller="Donation" asp-action="Donate">Donate Now</a>
+                <a class="btn btn-light" asp-controller="Volunteer" asp-action="Register">Become a Volunteer</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <div class="hero-logo">G</div>
+            <h3>Gift of the Givers</h3>
+            <p>People helping people through practical humanitarian support.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">OUR WORK</span>
+                <h2>Relief Projects</h2>
+            </div>
+            <p>Current projects displayed by the prototype.</p>
+        </div>
+
+        <div class="cards">
+            @foreach (var project in Model)
+            {
+                <article class="card">
+                    <span class="status @(project.Status == "Ongoing" ? "status-green" : "status-orange")">@project.Status</span>
+                    <h3>@project.Name</h3>
+                    <p class="location">📍 @project.Location</p>
+                    <p>@project.Description</p>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="impact">
+    <div class="container impact-grid">
+        <div><strong>3</strong><span>Relief projects</span></div>
+        <div><strong>24/7</strong><span>Humanitarian focus</span></div>
+        <div><strong>3</strong><span>Supported currencies</span></div>
+        <div><strong>2</strong><span>User roles</span></div>
+    </div>
+</section>
